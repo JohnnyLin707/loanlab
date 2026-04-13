@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Client</title>
+    <title>Edit Client</title>
     <meta charset="UTF-8">
 </head>
 <body>
 
-<h1>Add Client</h1>
+<h1>Edit Client</h1>
 
 <p th:if="${duplicateError}" th:text="${duplicateError}" style="color:red;"></p>
 
-<form th:action="@{/save}" th:object="${clientLoan}" method="post">
+<form th:action="@{/update}" th:object="${clientLoan}" method="post">
+
+    <input type="hidden" name="originalClientNo" th:value="${clientLoan.clientNo}">
 
     <label>Client Number</label><br>
     <input type="number" th:field="*{clientNo}">

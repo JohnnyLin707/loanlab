@@ -8,6 +8,8 @@
 
 <h1>Client Loan Records</h1>
 
+<p th:if="${successMessage}" th:text="${successMessage}" style="color: green;"></p>
+
 <a th:href="@{/add}">Add Client</a>
 
 <table border="1" cellpadding="8">
@@ -29,9 +31,16 @@
         <td th:text="${client.years}"></td>
         <td th:text="${client.loanType}"></td>
         <td>
-            <a href="#">Edit</a>
-            <a href="#">Delete</a>
-            <a href="#">Amortization</a>
+            <a th:href="@{/edit/{id}(id=${client.clientNo})}">Edit</a>
+            <span>&nbsp;</span>
+
+            <a th:href="@{/delete/{id}(id=${client.clientNo})}"
+               onclick="return confirm('Are you sure you want to delete this record?');">
+                Delete
+            </a>
+            <span>&nbsp;</span>
+
+            <a th:href="@{/amortization/{id}(id=${client.clientNo})}">Amortization</a>
         </td>
     </tr>
     </tbody>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Amortization Schedule</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h2>Amortization Schedule</h2>
+
+<p><strong>Client:</strong> <span th:text="${client.name}"></span></p>
+<p><strong>Loan Amount:</strong> <span th:text="${client.loanAmount}"></span></p>
+<p><strong>Years:</strong> <span th:text="${client.years}"></span></p>
+<p><strong>Loan Type:</strong> <span th:text="${client.loanType}"></span></p>
+
+<table border="1" cellpadding="8">
+    <thead>
+    <tr>
+        <th>Month</th>
+        <th>Payment</th>
+        <th>Interest</th>
+        <th>Principal</th>
+        <th>Balance</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${schedule}">
+        <td th:text="${row.month}"></td>
+        <td th:text="'$' + ${#numbers.formatDecimal(row.payment, 1, 2)}"></td>
+        <td th:text="'$' + ${#numbers.formatDecimal(row.interest, 1, 2)}"></td>
+        <td th:text="'$' + ${#numbers.formatDecimal(row.principal, 1, 2)}"></td>
+        <td th:text="'$' + ${#numbers.formatDecimal(row.balance, 1, 2)}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<button type="button" onclick="window.location.href='/'">Back</button>
+
+</body>
+</html>
